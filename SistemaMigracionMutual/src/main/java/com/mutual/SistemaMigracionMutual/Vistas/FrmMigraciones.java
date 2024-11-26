@@ -6,8 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblAyudaPesos;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCobro;
+import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCobroCuotaAyudaPesos;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCuota;
+import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCuotaAyudaPesos;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblFeriado;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblMovCajaAhorroComun;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblSaldo;
@@ -328,9 +331,141 @@ public class FrmMigraciones extends JFrame {
 				
 			}
 		});
-		
+				
 		btnMigracionSaldos.setBounds(24, 224, 246, 21);
-		contentPane.add(btnMigracionSaldos);		
+		contentPane.add(btnMigracionSaldos);
+		
+		// Ayuda en Pesos
+		
+		JButton btnAyudaPesos = new JButton("Migración tabla Ayuda en Pesos");
+		
+		btnAyudaPesos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MigracionTblAyudaPesos migracionTblAyuda = new MigracionTblAyudaPesos();
+				
+				boolean finalizoOK = migracionTblAyuda.ejecutarProcesoMigracion();
+				
+				if (finalizoOK) {
+		    		Utilidades.msg(null, "Migración completada correctamente");
+		    	} else {
+		    		Utilidades.msg(null, "Error en la Migración");
+		    	}
+				
+			}
+		});
+		
+		btnAyudaPesos.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if (e.getKeyCode() == e.VK_ENTER) {
+					
+					MigracionTblAyudaPesos migracionTblAyuda = new MigracionTblAyudaPesos();
+					
+					boolean finalizoOK = migracionTblAyuda.ejecutarProcesoMigracion();
+					
+					if (finalizoOK) {
+			    		Utilidades.msg(null, "Migración completada correctamente");
+			    	} else {
+			    		Utilidades.msg(null, "Error en la Migración");
+			    	}
+					
+				}
+				
+			}
+		});
+		
+		btnAyudaPesos.setBounds(24, 255, 246, 21);
+		contentPane.add(btnAyudaPesos);
+		
+		// Cuotas Ayuda en Pesos
+		
+		JButton btnCuotasAyudaPesos = new JButton("Migración Cuotas Ayuda en Pesos");
+		
+		btnCuotasAyudaPesos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MigracionTblCuotaAyudaPesos migracionTblCuota = new MigracionTblCuotaAyudaPesos();
+				
+				boolean finalizoOK = migracionTblCuota.ejecutarProcesoMigracion();
+				
+				if (finalizoOK) {
+		    		Utilidades.msg(null, "Migración completada correctamente");
+		    	} else {
+		    		Utilidades.msg(null, "Error en la Migración");
+		    	}
+				
+			}
+		});
+		
+		btnCuotasAyudaPesos.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if (e.getKeyCode() == e.VK_ENTER) {
+					
+					MigracionTblCuotaAyudaPesos migracionTblCuota = new MigracionTblCuotaAyudaPesos();
+					
+					boolean finalizoOK = migracionTblCuota.ejecutarProcesoMigracion();
+					
+					if (finalizoOK) {
+			    		Utilidades.msg(null, "Migración completada correctamente");
+			    	} else {
+			    		Utilidades.msg(null, "Error en la Migración");
+			    	}
+					
+				}
+				
+			}
+		});
+		
+		btnCuotasAyudaPesos.setBounds(24, 286, 246, 21);
+		contentPane.add(btnCuotasAyudaPesos);
+		
+		// Cobros Cuotas Ayuda en Pesos
+		
+		JButton btnCobrosCuotasAyudaPesos = new JButton("Migración Cobros Ayuda en Pesos");
+		
+		btnCobrosCuotasAyudaPesos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MigracionTblCobroCuotaAyudaPesos migracionTblCobroCuota = new MigracionTblCobroCuotaAyudaPesos();
+				
+				boolean finalizoOK = migracionTblCobroCuota.ejecutarProcesoMigracion();
+				
+				if (finalizoOK) {
+		    		Utilidades.msg(null, "Migración completada correctamente");
+		    	} else {
+		    		Utilidades.msg(null, "Error en la Migración");
+		    	}
+				
+			}
+		});
+		
+		btnCobrosCuotasAyudaPesos.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if (e.getKeyCode() == e.VK_ENTER) {
+					
+					MigracionTblCobroCuotaAyudaPesos migracionTblCobroCuota = new MigracionTblCobroCuotaAyudaPesos();
+					
+					boolean finalizoOK = migracionTblCobroCuota.ejecutarProcesoMigracion();
+					
+					if (finalizoOK) {
+			    		Utilidades.msg(null, "Migración completada correctamente");
+			    	} else {
+			    		Utilidades.msg(null, "Error en la Migración");
+			    	}
+					
+				}
+				
+			}
+		});
+		
+		btnCobrosCuotasAyudaPesos.setBounds(24, 317, 246, 21);
+		contentPane.add(btnCobrosCuotasAyudaPesos);
 		
 	}
 	
