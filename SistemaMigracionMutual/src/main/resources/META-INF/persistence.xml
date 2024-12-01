@@ -16,6 +16,9 @@
         <class>com.mutual.SistemaMigracionMutual.Entidades.AyudaPesos</class>
         <class>com.mutual.SistemaMigracionMutual.Entidades.CuotaAyudaPesos</class>
         <class>com.mutual.SistemaMigracionMutual.Entidades.CobroCuotaAyudaPesos</class>
+        <class>com.mutual.SistemaMigracionMutual.Entidades.AyudaDolares</class>
+        <class>com.mutual.SistemaMigracionMutual.Entidades.CuotaAyudaDolares</class>
+        <class>com.mutual.SistemaMigracionMutual.Entidades.CobroCuotaAyudaDolares</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
