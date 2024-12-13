@@ -48,7 +48,13 @@ public class MigracionTblMovCajaAhorroComun {
 				objeto.setOrden(row.getInt("ORDEN"));
 				objeto.setFecha(row.getDate("FECHA"));
 				objeto.setCodigo(row.getInt("CODIGO"));
-				objeto.setMonto(row.getBigDecimal("MONTO"));
+				
+				if (row.getInt("CODIGO") == 2) {
+					objeto.setMonto((row.getBigDecimal("MONTO")).negate());
+				} else {
+					objeto.setMonto(row.getBigDecimal("MONTO"));
+				}				
+				
 				objeto.setAnulado(row.getString("ANULADO"));
 				objeto.setFechaAcre(row.getDate("FEC_ACRE"));
 				objeto.setConcepto(row.getString("CONCEPTO"));
