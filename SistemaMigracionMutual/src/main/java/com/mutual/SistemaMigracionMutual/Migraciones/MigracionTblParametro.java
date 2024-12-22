@@ -7,12 +7,12 @@ import java.util.Properties;
 import com.linuxense.javadbf.DBFReader;
 import com.linuxense.javadbf.DBFRow;
 import com.linuxense.javadbf.DBFUtils;
-import com.mutual.SistemaMigracionMutual.Entidades.MovimientoCajaAhorroComun;
-import com.mutual.SistemaMigracionMutual.Servicios.MovCajaAhorroComunMigracionService;
+import com.mutual.SistemaMigracionMutual.Entidades.Parametro;
+import com.mutual.SistemaMigracionMutual.Servicios.ParametroMigracionService;
 
-public class MigracionTblMovCajaAhorroComun {
+public class MigracionTblParametro {
 	
-	MovCajaAhorroComunMigracionService migracionService = new MovCajaAhorroComunMigracionService();
+	ParametroMigracionService migracionService = new ParametroMigracionService();
 
 	public boolean ejecutarProcesoMigracion() {
 
@@ -30,7 +30,7 @@ public class MigracionTblMovCajaAhorroComun {
             
             propiedades.load(archivoProp);
             
-            String archivoDBF = propiedades.getProperty("archivo.COMUNMOV.dbf");
+            String archivoDBF = propiedades.getProperty("archivo.TABLAS.dbf");
 			
 			FileInputStream inputArchivoDBF = new FileInputStream(archivoDBF);
 
@@ -42,22 +42,22 @@ public class MigracionTblMovCajaAhorroComun {
 
 			while ((row = reader.nextRow()) != null) {
 
-				MovimientoCajaAhorroComun objeto = new MovimientoCajaAhorroComun();
+				Parametro objeto = new Parametro();
 
-				objeto.setNumeroSocio(row.getInt("SOCIO"));
-				objeto.setOrden(row.getInt("ORDEN"));
-				objeto.setFecha(row.getDate("FECHA"));
-				objeto.setCodigo(row.getInt("CODIGO"));
-				
-				if (row.getInt("CODIGO") == 2) {
-					objeto.setMonto((row.getBigDecimal("MONTO")).negate());
-				} else {
-					objeto.setMonto(row.getBigDecimal("MONTO"));
-				}				
-				
-				objeto.setAnulado(row.getString("ANULADO"));
-				objeto.setFechaAcre(row.getDate("FEC_ACRE"));
-				objeto.setConcepto(row.getString("CONCEPTO"));
+				objeto.setN1(row.getBigDecimal("N1"));
+				objeto.setN2(row.getBigDecimal("N2"));
+				objeto.setN3(row.getBigDecimal("N3"));
+				objeto.setN4(row.getBigDecimal("N4"));
+				objeto.setSellcrepe1(row.getBigDecimal("SELLCREPE1"));
+				objeto.setSellcrepe2(row.getBigDecimal("SELLCREPE2"));
+				objeto.setN5(row.getBigDecimal("N5"));
+				objeto.setN6(row.getBigDecimal("N6"));
+				objeto.setN7(row.getBigDecimal("N7"));
+				objeto.setN8(row.getBigDecimal("N8"));
+				objeto.setN9(row.getBigDecimal("N9"));
+				objeto.setMinimo(row.getBigDecimal("MINIMO"));
+				objeto.setPorAdmini(row.getBigDecimal("POR_ADMINI"));
+				objeto.setPorProedi(row.getBigDecimal("POR_PROEDI"));
 								
 				migracionService.cargarRegistroEnTabla(objeto);
 

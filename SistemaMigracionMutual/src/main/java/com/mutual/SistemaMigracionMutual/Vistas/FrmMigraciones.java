@@ -7,15 +7,20 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblAyudaDolares;
+import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblAyudaFrances;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblAyudaPesos;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCobro;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCobroCuotaAyudaDolares;
+import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCobroCuotaAyudaFrances;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCobroCuotaAyudaPesos;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCuota;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCuotaAyudaDolares;
+import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCuotaAyudaFrances;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblCuotaAyudaPesos;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblFeriado;
+import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblGarantia;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblMovCajaAhorroComun;
+import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblParametro;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblSaldo;
 import com.mutual.SistemaMigracionMutual.Migraciones.MigracionTblSocio;
 import com.mutual.SistemaMigracionMutual.Utilidades.Utilidades;
@@ -27,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 /**
 *
@@ -37,6 +43,7 @@ public class FrmMigraciones extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton btnMigracionTblCuotaFrances;
 
 	/**
 	 * Launch the application.
@@ -59,9 +66,11 @@ public class FrmMigraciones extends JFrame {
 	 */
 	public FrmMigraciones() {
 		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmMigraciones.class.getResource("/com/mutual/SistemaMigracionMutual/Imagenes/migration_icon_16_16.png")));
+		
 		setTitle("Migraciones Sistema Mutual");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 756, 487);
+		setBounds(100, 100, 593, 487);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null); // Centrar en la pantalla
@@ -601,6 +610,225 @@ public class FrmMigraciones extends JFrame {
 				
 		btnCobrosCuotasAyudaDolares.setBounds(24, 410, 246, 21);
 		contentPane.add(btnCobrosCuotasAyudaDolares);
+		
+		// Parametro (TABLAS)
+		
+		JButton btnMigracionParametro = new JButton("Migración Parametro (TABLAS)");
+		
+		btnMigracionParametro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MigracionTblParametro migracionTblParametro = new MigracionTblParametro();
+				
+				boolean finalizoOK = migracionTblParametro.ejecutarProcesoMigracion();
+				
+				if (finalizoOK) {
+		    		Utilidades.msg(null, "Migración completada correctamente");
+		    	} else {
+		    		Utilidades.msg(null, "Error en la Migración");
+		    	}
+				
+			}
+		});
+		
+		btnMigracionParametro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if (e.getKeyCode() == e.VK_ENTER) {
+					
+					MigracionTblParametro migracionTblParametro = new MigracionTblParametro();
+					
+					boolean finalizoOK = migracionTblParametro.ejecutarProcesoMigracion();
+					
+					if (finalizoOK) {
+			    		Utilidades.msg(null, "Migración completada correctamente");
+			    	} else {
+			    		Utilidades.msg(null, "Error en la Migración");
+			    	}
+					
+				}
+				
+			}
+		});
+		
+		btnMigracionParametro.setBounds(312, 69, 246, 21);
+		contentPane.add(btnMigracionParametro);
+		
+		// Garantia
+		
+		JButton btnMigracionGarantia = new JButton("Migración Garantía");
+		
+		btnMigracionGarantia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MigracionTblGarantia migracionTblGarantia = new MigracionTblGarantia();
+				
+				boolean finalizoOK = migracionTblGarantia.ejecutarProcesoMigracion();
+				
+				if (finalizoOK) {
+		    		Utilidades.msg(null, "Migración completada correctamente");
+		    	} else {
+		    		Utilidades.msg(null, "Error en la Migración");
+		    	}
+				
+			}
+		});
+		
+		btnMigracionGarantia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if (e.getKeyCode() == e.VK_ENTER) {
+					
+					MigracionTblGarantia migracionTblGarantia = new MigracionTblGarantia();
+					
+					boolean finalizoOK = migracionTblGarantia.ejecutarProcesoMigracion();
+					
+					if (finalizoOK) {
+			    		Utilidades.msg(null, "Migración completada correctamente");
+			    	} else {
+			    		Utilidades.msg(null, "Error en la Migración");
+			    	}
+					
+				}
+				
+			}
+		});
+		
+		btnMigracionGarantia.setBounds(312, 100, 246, 21);
+		contentPane.add(btnMigracionGarantia);
+		
+		// Ayuda Frances
+		
+		JButton btnMigracionTblAyudaFrances = new JButton("Migración Ayuda Frances");
+		
+		btnMigracionTblAyudaFrances.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MigracionTblAyudaFrances migracionTblAyudaFrances = new MigracionTblAyudaFrances();
+				
+				boolean finalizoOK = migracionTblAyudaFrances.ejecutarProcesoMigracion();
+				
+				if (finalizoOK) {
+		    		Utilidades.msg(null, "Migración completada correctamente");
+		    	} else {
+		    		Utilidades.msg(null, "Error en la Migración");
+		    	}
+				
+			}
+		});
+		
+		btnMigracionTblAyudaFrances.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if (e.getKeyCode() == e.VK_ENTER) {
+					
+					MigracionTblAyudaFrances migracionTblAyudaFrances = new MigracionTblAyudaFrances();
+					
+					boolean finalizoOK = migracionTblAyudaFrances.ejecutarProcesoMigracion();
+					
+					if (finalizoOK) {
+			    		Utilidades.msg(null, "Migración completada correctamente");
+			    	} else {
+			    		Utilidades.msg(null, "Error en la Migración");
+			    	}
+					
+				}
+				
+			}
+		});
+		
+		btnMigracionTblAyudaFrances.setBounds(312, 131, 246, 21);
+		contentPane.add(btnMigracionTblAyudaFrances);
+		
+		// Cuotas Frances
+		
+		btnMigracionTblCuotaFrances = new JButton("Migración Cuotas Frances");
+		
+		btnMigracionTblCuotaFrances.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MigracionTblCuotaAyudaFrances migracionTblCuotasFrances = new MigracionTblCuotaAyudaFrances();
+				
+				boolean finalizoOK = migracionTblCuotasFrances.ejecutarProcesoMigracion();
+				
+				if (finalizoOK) {
+		    		Utilidades.msg(null, "Migración completada correctamente");
+		    	} else {
+		    		Utilidades.msg(null, "Error en la Migración");
+		    	}
+				
+			}
+		});
+		
+		btnMigracionTblCuotaFrances.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if (e.getKeyCode() == e.VK_ENTER) {
+					
+					MigracionTblCuotaAyudaFrances migracionTblCuotasFrances = new MigracionTblCuotaAyudaFrances();
+					
+					boolean finalizoOK = migracionTblCuotasFrances.ejecutarProcesoMigracion();
+					
+					if (finalizoOK) {
+			    		Utilidades.msg(null, "Migración completada correctamente");
+			    	} else {
+			    		Utilidades.msg(null, "Error en la Migración");
+			    	}
+					
+				}
+				
+			}
+		});
+		
+		btnMigracionTblCuotaFrances.setBounds(312, 162, 246, 21);
+		contentPane.add(btnMigracionTblCuotaFrances);
+		
+		// Cobros Frances
+		
+		JButton btnMigracionTblCobrosFrances = new JButton("Migración Cobros Frances");
+		
+		btnMigracionTblCobrosFrances.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MigracionTblCobroCuotaAyudaFrances migracionTblCobrosFrances = new MigracionTblCobroCuotaAyudaFrances();
+				
+				boolean finalizoOK = migracionTblCobrosFrances.ejecutarProcesoMigracion();
+				
+				if (finalizoOK) {
+		    		Utilidades.msg(null, "Migración completada correctamente");
+		    	} else {
+		    		Utilidades.msg(null, "Error en la Migración");
+		    	}
+				
+			}
+		});
+		btnMigracionTblCobrosFrances.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if (e.getKeyCode() == e.VK_ENTER) {
+					
+					MigracionTblCobroCuotaAyudaFrances migracionTblCobrosFrances = new MigracionTblCobroCuotaAyudaFrances();
+					
+					boolean finalizoOK = migracionTblCobrosFrances.ejecutarProcesoMigracion();
+					
+					if (finalizoOK) {
+			    		Utilidades.msg(null, "Migración completada correctamente");
+			    	} else {
+			    		Utilidades.msg(null, "Error en la Migración");
+			    	}
+					
+				}
+				
+			}
+		});
+		
+		btnMigracionTblCobrosFrances.setBounds(312, 193, 246, 21);
+		contentPane.add(btnMigracionTblCobrosFrances);
 		
 	}
 }

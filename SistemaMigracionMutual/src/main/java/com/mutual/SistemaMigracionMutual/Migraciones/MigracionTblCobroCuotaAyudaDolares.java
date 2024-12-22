@@ -26,7 +26,7 @@ public class MigracionTblCobroCuotaAyudaDolares {
 			Properties propiedades = new Properties();
             
             InputStream archivoProp = null;
-            archivoProp = getClass().getClassLoader().getResourceAsStream("application.properties");;
+            archivoProp = getClass().getClassLoader().getResourceAsStream("application.properties");
             
             propiedades.load(archivoProp);
             

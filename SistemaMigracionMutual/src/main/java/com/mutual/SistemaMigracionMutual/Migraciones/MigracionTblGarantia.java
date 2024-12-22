@@ -7,12 +7,12 @@ import java.util.Properties;
 import com.linuxense.javadbf.DBFReader;
 import com.linuxense.javadbf.DBFRow;
 import com.linuxense.javadbf.DBFUtils;
-import com.mutual.SistemaMigracionMutual.Entidades.MovimientoCajaAhorroComun;
-import com.mutual.SistemaMigracionMutual.Servicios.MovCajaAhorroComunMigracionService;
+import com.mutual.SistemaMigracionMutual.Entidades.Garantia;
+import com.mutual.SistemaMigracionMutual.Servicios.GarantiaMigracionService;
 
-public class MigracionTblMovCajaAhorroComun {
+public class MigracionTblGarantia {
 	
-	MovCajaAhorroComunMigracionService migracionService = new MovCajaAhorroComunMigracionService();
+	GarantiaMigracionService migracionService = new GarantiaMigracionService();
 
 	public boolean ejecutarProcesoMigracion() {
 
@@ -30,7 +30,7 @@ public class MigracionTblMovCajaAhorroComun {
             
             propiedades.load(archivoProp);
             
-            String archivoDBF = propiedades.getProperty("archivo.COMUNMOV.dbf");
+            String archivoDBF = propiedades.getProperty("archivo.GARANTIA.dbf");
 			
 			FileInputStream inputArchivoDBF = new FileInputStream(archivoDBF);
 
@@ -42,23 +42,11 @@ public class MigracionTblMovCajaAhorroComun {
 
 			while ((row = reader.nextRow()) != null) {
 
-				MovimientoCajaAhorroComun objeto = new MovimientoCajaAhorroComun();
-
-				objeto.setNumeroSocio(row.getInt("SOCIO"));
-				objeto.setOrden(row.getInt("ORDEN"));
-				objeto.setFecha(row.getDate("FECHA"));
-				objeto.setCodigo(row.getInt("CODIGO"));
+				Garantia objeto = new Garantia();
 				
-				if (row.getInt("CODIGO") == 2) {
-					objeto.setMonto((row.getBigDecimal("MONTO")).negate());
-				} else {
-					objeto.setMonto(row.getBigDecimal("MONTO"));
-				}				
-				
-				objeto.setAnulado(row.getString("ANULADO"));
-				objeto.setFechaAcre(row.getDate("FEC_ACRE"));
-				objeto.setConcepto(row.getString("CONCEPTO"));
-								
+				objeto.setGarantia(row.getString("GARANTIA"));
+				objeto.setPorcentaje(row.getBigDecimal("PORCE"));
+												
 				migracionService.cargarRegistroEnTabla(objeto);
 
 			}
